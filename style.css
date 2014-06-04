@@ -1,7 +1,7 @@
 *{font-family: sans-serif}
 /* #### bootstrap Form #### */
 .bootstrap-frm {
-    width: 600px;
+    width: 700px;
     margin-right: auto;
     /*margin-left: auto;*/
     background: #FFF;
@@ -10,17 +10,17 @@
     color: #888;
     text-shadow: 1px 1px 1px #FFF;
     border:1px solid #DDD;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 .bootstrap-frm h1 {
     font: 25px "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0px 0px 10px 40px;
     display: block;
     border-bottom: 1px solid #DADADA;
-    margin: -10px -30px 30px -30px;
-    color: #888;
+    margin: -10px -30px 15px -30px;
+    color: #555;
 }
 .bootstrap-frm h1>span {
     display: block;
@@ -50,16 +50,18 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
 }
+
+
 .bootstrap-frm input[type="text"], .bootstrap-frm input[type="email"], .bootstrap-frm textarea, .bootstrap-frm select{
     border: 1px solid #CCC;
     color: #888;
-    height: 20px;
-    margin-bottom: 16px;
+    height: 18px;
+    margin-bottom: 0px;
     margin-right: 6px;
     margin-top: 2px;
     outline: 0 none;
     padding: 6px 12px;
-    width: 68%;
+    width: 30%;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -84,8 +86,10 @@
     height:100px;
 }
 .bootstrap-frm .button {
-	width:100%;
-	font-family: 22px, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 100%;
+	width:30%;
+    font-size: 14px;
+	font-family: 14px, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     background: #FFF;
     border: 1px solid #CCC;
@@ -98,3 +102,8 @@
     background-color: #EBEBEB;
     border-color: #ADADAD;
 }
+
+input[type=radio] {
+  display: inline;
+}
+
