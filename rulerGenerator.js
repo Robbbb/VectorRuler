@@ -1,4 +1,6 @@
-var ruler = new Object();
+/* jshint asi: true*/
+var ruler = {}
+
 
 var limitTickQty = function(){
     //Prevent it from crashing if it tries to render too many linest
@@ -29,8 +31,8 @@ var limitTickQty = function(){
 }
 
 var checkUnit = function(){
-    pixelsPerInch = 72//I don't think this needs to be in the object....
-    pixelsPerCM  =  pixelsPerInch / ruler.cmPerInch
+    var pixelsPerInch = 72//I don't think this needs to be in the object....
+    var pixelsPerCM  =  pixelsPerInch / ruler.cmPerInch
 
     if (ruler.units === "inches"){
         ruler.pixelsPerUnit = pixelsPerInch
@@ -50,9 +52,9 @@ var checkUnit = function(){
 var checkSubUnitBase = function(){
     // if it is fractional, make the fractional dropdown appear
     // if it is decimal, likewise
-    suffix = " " + ruler.unitsAbbr
+    var suffix = " " + ruler.unitsAbbr
 
-    subLabelsDec = [
+    var subLabelsDec = [
    "1"  +suffix,
    "1/10th"  +suffix,
    "1/100th"  +suffix,
@@ -62,7 +64,7 @@ var checkSubUnitBase = function(){
    "1/1000000th"  +suffix,
     ]
 
-    subLabelsFrac = [
+    var subLabelsFrac = [
    "1"  +suffix,
    "1/2"  +suffix,
    "1/4"  +suffix,
@@ -81,7 +83,7 @@ var checkSubUnitBase = function(){
 
         for (var i = ruler.subLabels.length - 1; i >= 0; i--) {
             document.getElementById("subUnitExponent")[i].text =ruler.subLabels[i]
-        };
+        }
     }
     else if (ruler.subUnitBase === '2'){//Fractional!
         ruler.subLabels = subLabelsFrac
@@ -91,9 +93,9 @@ var checkSubUnitBase = function(){
         document.getElementById("subUnitExponent")[5].disabled = false;//re-enable the ones that dont crash
         document.getElementById("subUnitExponent")[6].disabled = false;
 
-            for (var i = ruler.subLabels.length - 1; i >= 0; i--) {
-                document.getElementById("subUnitExponent")[i].text =ruler.subLabels[i]
-            };
+            for (var j = ruler.subLabels.length - 1; j >= 0; j--) {
+                document.getElementById("subUnitExponent")[j].text =ruler.subLabels[j]
+            }
     }
     else{
         console.error("Impossible subUnitBase. Must be 2 or 10. is:  "+ ruler.subUnitBase)
@@ -148,7 +150,7 @@ var tick = function(tickHeight, horizPosition, tickIndex, exponentIndex, tickSpa
         line.strokeWidth = "1";//width of ruler line in pixels
 
         ruler.tickArray[ruler.masterTickIndex]=true //register the tick so it is not duplicated
-            if (exponentIndex==0) {//if is a primary tick, it needs a label
+            if (exponentIndex === 0) {//if is a primary tick, it needs a label
                 tickLabel(x1,y2,finalTick,tickIndex,exponentIndex)
             }
     }   
@@ -166,7 +168,7 @@ var tickLabel = function(x1,y2,finalTick,tickIndex,exponentIndex){
             if (finalTick) {xLabelOffset = -1* xLabelOffset}//last label is right justified
             var text = new paper.PointText(new paper.Point(x1+ xLabelOffset, y2+yLabelOffset));
             text.justification = 'left';
-            if (finalTick) {text.justification = 'right';};//last label is right justified
+            if (finalTick) {text.justification = 'right';}//last label is right justified
             text.fillColor = 'black';
             text.content = tickIndex;
             text.style = {
@@ -210,6 +212,7 @@ var build = function(){
 }
 
 var exportSvg = function(){
+    //* I referenced the excellent SVG export example here: http://paperjs.org/features/#svg-import-and-export
     document.getElementById("svgexpbutton").onclick = 
     function(){
         exportWidth = document.getElementById("myCanvas").width 

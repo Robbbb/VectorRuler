@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Vector Ruler SVG Generator</title>
 <meta charset="UTF-8">
+<meta name="description" content="A web-based applet for the generation of downloadable vector rulers, suitable for laser etching">
+<meta name="keywords" content="Ilustrator,Vector,Vector Ruler, SVG, SVG ruler, Javascript SVG">
+<meta name="author" content="Robb Godshaw">
 <link rel="stylesheet" type="text/css" href="style.css">
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <script type="text/javascript" src="paper-full.js"></script>
@@ -11,19 +15,18 @@
 <body> 
 
     <div class="bootstrap-frm">
-    <span class="ribbon">
+    <div class="ribbon">
     <a href="https://github.com/robbbb/VectorRuler"><img  src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-    </span>
+    </div>
     <div class="bootstrap-padded">
     <h1>Vector Ruler Generator
         <span>Download a laser cuttable ruler to etch into your belongings and belts.</span>
     </h1>
-    <form id="rulerParameters" >
+    <form id="rulerParameters" action="" >
         <label>
             <span>Width:</span>
             <input type="text"  id="rulerWidth"  value="12"  >
         </label>
-        <div>
         <label>
             <span>Height:</span>
             <input type="text"  id="rulerHeight" value="1.5">

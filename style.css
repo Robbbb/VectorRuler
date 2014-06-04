@@ -86,7 +86,6 @@
     height: 30px;
 }
 .bootstrap-frm textarea{
-
     height:100px;
 }
 .bootstrap-frm .button {
@@ -116,7 +115,6 @@
 .bootstrap-frm .ribbon img {
     position: absolute;
     right: 0; top: 0; }
-
 
 input[type=radio] {
   display: inline;
