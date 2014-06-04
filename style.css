@@ -5,7 +5,7 @@
     margin-right: auto;
     /*margin-left: auto;*/
     background: #FFF;
-    padding: 20px 30px 20px 30px;
+    /*padding: 20px 30px 20px 30px;*/
     font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #888;
     text-shadow: 1px 1px 1px #FFF;
@@ -13,6 +13,10 @@
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+}
+.bootstrap-padded{
+        padding: 20px 30px 20px 30px;
+
 }
 .bootstrap-frm h1 {
     font: 25px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -87,7 +91,7 @@
 }
 .bootstrap-frm .button {
     height: 100%;
-	width:30%;
+	width:40%;
     font-size: 14px;
 	font-family: 14px, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
@@ -102,6 +106,17 @@
     background-color: #EBEBEB;
     border-color: #ADADAD;
 }
+
+.bootstrap-frm .ribbon { 
+    position: relative;
+    padding:0px 0px 0px 0px;
+    float: right;
+    margin-top: 0px; 
+}
+.bootstrap-frm .ribbon img {
+    position: absolute;
+    right: 0; top: 0; }
+
 
 input[type=radio] {
   display: inline;

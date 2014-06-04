@@ -12151,12 +12151,13 @@ new function() {
 			return exportDefinitions(exportSVG(this, options), options);
 		}
 	});
-
+/// viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve"
 	Project.inject({
 		exportSVG: function(options) {
 			options = setOptions(options);
 			var layers = this.layers,
 				size = this.getView().getSize(),
+
 				node = createElement('svg', {
 					x: 0,
 					y: 0,
