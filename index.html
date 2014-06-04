@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vector Ruler SVG Generator</title>
+<meta charset="UTF-8">
+<meta name="description" content="A web-based applet for the generation of downloadable vector rulers, suitable for laser etching">
+<meta name="keywords" content="Ilustrator,Vector,Vector Ruler, SVG, SVG ruler, Javascript SVG">
+<meta name="author" content="Robb Godshaw">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<script type="text/javascript" src="paper-full.js"></script>
+<script type="text/javascript" src="rulerGenerator.js"></script>
+
+</head>
+<body> 
+
+    <div class="bootstrap-frm">
+    <div class="ribbon">
+    <a href="https://github.com/robbbb/VectorRuler"><img  src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    </div>
+    <div class="bootstrap-padded">
+    <h1>Vector Ruler Generator
+        <span>Download a laser cuttable ruler to etch into your belongings and belts.</span>
+    </h1>
+    <form id="rulerParameters" action="" >
+        <label>
+            <span>Width:</span>
+            <input type="text"  id="rulerWidth"  value="12"  >
+        </label>
+        <label>
+            <span>Height:</span>
+            <input type="text"  id="rulerHeight" value="1.5">
+        </label>
+
+            <label>
+                <span>Units:</span>
+            </label>
+                <Input type = "radio"  name="rulerUnits" value="inches" checked>
+                    Inches
+                    
+                <Input type = "radio"  name="rulerUnits" value="centimeters" >
+                    Centimeters
+                <br>
+                <Input type = "radio"  name= "subUnits" value = "2"   checked>
+                    Fractonal            
+                <Input type = "radio"  name= "subUnits" value = "10">
+                    Decimal
+            <label>
+                <span>Subdivisions: </span>
+                <select id="subUnitExponent"  style="width:30%" >
+                      <option value ="0">Zero</option>
+                      <option value ="1">One</option>  
+                      <option value ="2">Two</option>
+                      <option value ="3"
+                      selected          >Three</option>
+                      <option value ="4">Four</option>
+                      <option value ="5">Five</option>
+                      <option value ="6">Six </option>
+                </select>
+            </label>
+            <!-- <hr> -->
+            <label>
+                <span></span>
+            </label>
+                <input type="checkbox" name="redundant" id="redundant" >Draw redundant lines<br>
+    </form>
+    <form id="svgexpform" method="post" action="http://download-data-uri.appspot.com/" >
+        <b>Filename: </b>
+        <input type="text" name="filename" value="exportedRuler.svg">
+        <input id="svgexpdata" name="data" value="123" type="hidden">
+        <input type="button" class="button" value="Download ruler as .SVG" id="svgexpbutton">
+    </form>
+    <hr>
+</div>
+<div style="overflow-x:scroll;">
+    <canvas id="myCanvas" resize></canvas>
+</div>
+</div>
+</body>
+</html>
