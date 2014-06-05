@@ -220,9 +220,8 @@ var exportSvg = function(){
         viewBox ='viewBox="0 0 '+exportWidth+' '+exportHeight+'"'
         dims = ' width= "'+exportWidth+'" height="'+exportHeight+' " '
         var svgPrefix = '<svg x="0" y="0"'+dims+viewBox+' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
-        var scriptInfo = '<!-- This ruler was genrated by Ruler Generator by Robb Godshaw, www.robb.cc -->';
         // var svgPostfix = '</svg>';
-        var svg =   scriptInfo + paper.project.exportSVG({ asString: true, size: { width: exportWidth, height: exportHeight } });
+        var svg =   paper.project.exportSVG({ asString: true, size: { width: exportWidth, height: exportHeight } });
 
         var elem = document.getElementById("svgexpdata");
         elem.value = 'data:image/svg+xml;base64,' + btoa(svg);
