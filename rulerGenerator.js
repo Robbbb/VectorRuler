@@ -122,8 +122,10 @@ var constructRuler = function(){
         //to prevent reduntant ticks, this multiplier is applied to crrent units to ensure consistent indexing of ticks.
         for (var tickIndex = 0;  tickIndex <= tickQty;  tickIndex++) {
             ruler.masterTickIndex = highestTickDenomonatorMultiplier * tickIndex
-            var tickHeight = ruler.heightPixels/(Math.pow(2,exponentIndex))
-            //height of the ticks being drawn, diminishes with tick signifcance
+            // levelToLevelMultiplier =0.7
+            var tickHeight 
+            tickHeight = ruler.heightPixels*Math.pow(ruler.levelToLevelMultiplier,exponentIndex)
+
             var tickSpacing = ruler.pixelsPerUnit/(Math.pow(ruler.subUnitBase,exponentIndex))
             //spacing between ticks, the fundemental datum on a ruler :-)
             var finalTick = false
@@ -191,6 +193,7 @@ var updateVariables = function(){
     ruler.width = $('#rulerWidth').val() ;
     ruler.height = $('#rulerHeight').val() ;
     ruler.subUnitExponent = $('#subUnitExponent').val() ;
+    ruler.levelToLevelMultiplier = $('#levelToLevelMultiplier').val();
     ruler.cmPerInch = 2.54
 }
 

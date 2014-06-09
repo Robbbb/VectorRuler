@@ -13,3 +13,11 @@ A Javascript-based generator of laser cutter friendly etchable rulers
 + I referenced the [excellent SVG export example here](http://paperjs.org/features/#svg-import-and-export)
 - The default fort is not ideal for laser cutting, as it is not a true [single-line font.](https://www.google.com/search?q=single+line+font&oq=single+line+font&aqs=chrome..69i57j69i60j69i65j69i59j69i61j69i60.2077j0j7&sourceid=chrome&es_sm=91&ie=UTF-8)
 + The text is editable as text, so it can easily be changed in Illustrator or Inkscape.
+
+
+Viewing the very well organized document tree of an exported ruler in Illustrator:
+
+Open the [Layers] Palette (Window > Layers)
+click the [ ►Layer 1] arrow to view its children
+There will be a group for each tick level (1"in, ½:"in, ¼"in, ⅛"in... or 1cm. 0.1cm, 0.01cm...)▼
+All the labels can easily be changed in terms of size or font
