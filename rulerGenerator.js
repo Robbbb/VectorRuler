@@ -8,12 +8,12 @@ var limitTickQty = function(){
     ruler.masterTickQty = ruler.ticksPerUnit * ruler.width
     if(ruler.height>100){
         console.info("Unreasonable ruler height: "+ ruler.height + " reducing height")
-         ruler.height= 15 
+         ruler.height= 15
          document.getElementById("rulerHeight").value = ruler.height;
     }
     if(ruler.width>1000){
         console.info("Unreasonable tick quantity: "+ ruler.masterTickQty + " reducing width")
-         ruler.width= 500 
+         ruler.width= 500
          document.getElementById("rulerWidth").value = ruler.width;
     }
      if(ruler.masterTickQty > 10000){
@@ -46,7 +46,7 @@ var checkUnit = function(){
         ruler.pixelsPerUnit = 0
         console.error("Unexpected unit value. Unit value: "+rulerUnits)
     }
-    ruler.heightPixels = ruler.height * ruler.pixelsPerUnit 
+    ruler.heightPixels = ruler.height * ruler.pixelsPerUnit
 }
 
 var checkSubUnitBase = function(){
@@ -118,12 +118,14 @@ var constructRuler = function(){
         layerArray[exponentIndex]= new paper.Layer();
         layerArray[exponentIndex].name = ruler.subLabels[exponentIndex] + " Tick Group";
 
+        var startNo = $('#startNo').val() ;
+
         highestTickDenomonatorMultiplier = ruler.ticksPerUnit / Math.pow(ruler.subUnitBase,exponentIndex)
         //to prevent reduntant ticks, this multiplier is applied to crrent units to ensure consistent indexing of ticks.
-        for (var tickIndex = 0;  tickIndex <= tickQty;  tickIndex++) {
+        for (var tickIndex = 0;  tickIndex <= tickQty ;  tickIndex++) {
             ruler.masterTickIndex = highestTickDenomonatorMultiplier * tickIndex
             // levelToLevelMultiplier =0.7
-            var tickHeight 
+            var tickHeight
             tickHeight = ruler.heightPixels*Math.pow(ruler.levelToLevelMultiplier,exponentIndex)
 
             var tickSpacing = ruler.pixelsPerUnit/(Math.pow(ruler.subUnitBase,exponentIndex))
@@ -131,13 +133,14 @@ var constructRuler = function(){
             var finalTick = false
             if(tickIndex === tickQty){finalTick = true}
 
-            tick(tickHeight,0, tickIndex, exponentIndex, tickSpacing,finalTick);
+            var offsetTickIndex = parseInt(tickIndex) + parseInt(startNo)
+            tick(tickHeight,0, tickIndex, offsetTickIndex, exponentIndex, tickSpacing,finalTick);
             //draws the ticks
         }
     }
 }
 
-var tick = function(tickHeight, horizPosition, tickIndex, exponentIndex, tickSpacing,finalTick){
+var tick = function(tickHeight, horizPosition, tickIndex, offsetTickIndex, exponentIndex, tickSpacing,finalTick){
     //exponentIndex is 0-6, how small it is, 6 being smallest
     var x1 = horizPosition + (tickSpacing * tickIndex)
     var x2 = x1 //x === x because lines are vertical
@@ -153,7 +156,7 @@ var tick = function(tickHeight, horizPosition, tickIndex, exponentIndex, tickSpa
 
         ruler.tickArray[ruler.masterTickIndex]=true //register the tick so it is not duplicated
             if (exponentIndex === 0) {//if is a primary tick, it needs a label
-                tickLabel(x1,y2,finalTick,tickIndex,exponentIndex)
+                tickLabel(x1,y2,finalTick,offsetTickIndex,exponentIndex)
             }
     }   
 }
@@ -218,7 +221,7 @@ var exportSvg = function(){
     //* I referenced the excellent SVG export example here: http://paperjs.org/features/#svg-import-and-export
     document.getElementById("svgexpbutton").onclick = 
     function(){
-        exportWidth = document.getElementById("myCanvas").width 
+        exportWidth = document.getElementById("myCanvas").width
         exportHeight = document.getElementById("myCanvas").height
         viewBox ='viewBox="0 0 '+exportWidth+' '+exportHeight+'"'
         dims = ' width= "'+exportWidth+'" height="'+exportHeight+' " '
