@@ -31,7 +31,7 @@ var limitTickQty = function(){
 }
 
 var checkUnit = function(){
-    var pixelsPerInch = 72//I don't think this needs to be in the object....
+    var pixelsPerInch = $('#ppInch').val() 
     var pixelsPerCM  =  pixelsPerInch / ruler.cmPerInch
 
     if (ruler.units === "inches"){
