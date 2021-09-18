@@ -223,16 +223,27 @@ var exportSvg = function(){
     function(){
         exportWidth = document.getElementById("myCanvas").width
         exportHeight = document.getElementById("myCanvas").height
-        viewBox ='viewBox="0 0 '+exportWidth+' '+exportHeight+'"'
-        dims = ' width= "'+exportWidth+'" height="'+exportHeight+' " '
-        var svgPrefix = '<svg x="0" y="0"'+dims+viewBox+' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
-        // var svgPostfix = '</svg>';
-        var svg =   paper.project.exportSVG({ asString: true, size: { width: exportWidth, height: exportHeight } });
 
-        var elem = document.getElementById("svgexpdata");
-        elem.value = 'data:image/svg+xml;base64,' + btoa(svg);
-        //btoa Creates a base-64 encoded ASCII string from a "string" of binary data
-        document.getElementById("svgexpform").submit();
+        let downloadLink = document.getElementById('downloadSVG')
+        // let svgString = paper.project.exportSVG({asString:true})
+        var svgString =   paper.project.exportSVG({ asString: true, size: { width: exportWidth, height: exportHeight } });
+
+        var url = URL.createObjectURL(new Blob([svgString], {
+                type: 'image/svg+xml'
+            }));
+        downloadLink.href = url
+        downloadLink.download = 'myPaperExport.svg';
+
+
+        // viewBox ='viewBox="0 0 '+exportWidth+' '+exportHeight+'"'
+        // dims = ' width= "'+exportWidth+'" height="'+exportHeight+' " '
+        // var svgPrefix = '<svg x="0" y="0"'+dims+viewBox+' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
+        // var svgPostfix = '</svg>';
+
+        // var elem = document.getElementById("svgexpdata");
+        // elem.value = 'data:image/svg+xml;base64,' + btoa(svg);
+        // //btoa Creates a base-64 encoded ASCII string from a "string" of binary data
+        // document.getElementById("svgexpform").submit();
 };
 
 }
