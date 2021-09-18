@@ -7,7 +7,7 @@
 <meta name="keywords" content="Ilustrator,Vector,Vector Ruler, SVG, SVG ruler, Javascript SVG">
 <meta name="author" content="Robb Godshaw">
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <script type="text/javascript" src="paper-full.js"></script>
 <script type="text/javascript" src="rulerGenerator.js"></script>
 
@@ -46,7 +46,7 @@
                     Centimeters
                 <br>
                 <Input type = "radio"  name= "subUnits" value = "2"   checked>
-                    Fractonal            
+                    Fractional            
                 <Input type = "radio"  name= "subUnits" value = "10">
                     Decimal
             <label>
@@ -88,8 +88,11 @@
         <b>Filename: </b>
         <input type="text" name="filename" value="exportedRuler.svg">
         <input id="svgexpdata" name="data" value="123" type="hidden">
-        <input type="button" class="button" value="Download ruler as .SVG" id="svgexpbutton">
+        <a href="#" id="downloadSVG">
+            <input type="button" class="button" value="Download ruler as .SVG" id="svgexpbutton"> 
+        </a>
     </form>
+
     <hr>
 </div>
 <div style="overflow-x:scroll;">
