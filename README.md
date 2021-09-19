@@ -21,3 +21,13 @@ Open the [Layers] Palette (Window > Layers)
 click the [ ►Layer 1] arrow to view its children
 There will be a group for each tick level (1"in, ½:"in, ¼"in, ⅛"in... or 1cm. 0.1cm, 0.01cm...)▼
 All the labels can easily be changed in terms of size or font
+
+### Contributing
+Pull requests, corrections, translations & fixes are welcome. Any contributions must be submitted under the same license as the original piece of work (see below). Take a look at any open issues or submit new ones if there is something that needs to be fixed or added.
+
+Watch this video on how to contribute to open source for a complete overview -> https://www.youtube.com/watch?v=UWA4wyacY2A
+
+### License
+Unless otherwise specified, everything in this repository is covered by the following licence:
+
+Content is available under the [MIT license](https://github.com/Robbbb/VectorRuler/blob/master/LICENSE.txt).
