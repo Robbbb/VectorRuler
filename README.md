@@ -11,7 +11,7 @@ A Javascript-based generator of laser cutter friendly etchable rulers
 + Code is well-commented and sylistically sound allowing for easy modifications and pull requests
 + Uses [Paper.js](http://paperjs.org/) for drawing and export
 + I referenced the [excellent SVG export example here](http://paperjs.org/features/#svg-import-and-export)
-- The default fort is not ideal for laser cutting, as it is not a true [single-line font.](https://www.google.com/search?q=single+line+font&oq=single+line+font&aqs=chrome..69i57j69i60j69i65j69i59j69i61j69i60.2077j0j7&sourceid=chrome&es_sm=91&ie=UTF-8)
+- The default font is not ideal for laser cutting, as it is not a true [single-line font.](https://www.google.com/search?q=single+line+font&oq=single+line+font&aqs=chrome..69i57j69i60j69i65j69i59j69i61j69i60.2077j0j7&sourceid=chrome&es_sm=91&ie=UTF-8)
 + The text is editable as text, so it can easily be changed in Illustrator or Inkscape.
 
 
