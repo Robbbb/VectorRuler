@@ -17,10 +17,10 @@ A Javascript-based generator of laser cutter friendly etchable rulers
 
 Viewing the very well organized document tree of an exported ruler in Illustrator:
 
-Open the [Layers] Palette (Window > Layers)
-click the [ ►Layer 1] arrow to view its children
-There will be a group for each tick level (1"in, ½:"in, ¼"in, ⅛"in... or 1cm. 0.1cm, 0.01cm...)▼
-All the labels can easily be changed in terms of size or font
++ Open the [Layers] Palette (Window > Layers)
++ click the [ ►Layer 1] arrow to view its children
++ There will be a group for each tick level (1"in, ½:"in, ¼"in, ⅛"in... or 1cm. 0.1cm, 0.01cm...)▼
++ All the labels can easily be changed in terms of size or font
 
 ### Contributing
 Pull requests, corrections, translations & fixes are welcome. Any contributions must be submitted under the same license as the original piece of work (see below). Take a look at any open issues or submit new ones if there is something that needs to be fixed or added.
