@@ -31,7 +31,7 @@ var limitTickQty = function(){
 }
 
 var checkUnit = function(){
-    var pixelsPerInch = $('#ppInch').val() //72
+    var pixelsPerInch =  $('input:radio[name=ppInch]:checked').val(); //$('#ppInch').val() //72
     var pixelsPerCM  =  pixelsPerInch / ruler.cmPerInch
 
     if (ruler.units === "inches"){
