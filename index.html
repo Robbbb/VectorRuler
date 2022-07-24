@@ -23,16 +23,7 @@
         <span>Download a laser cuttable ruler to etch into your belongings and belts.</span>
     </h1>
     <form id="rulerParameters" action="" >
-        			  <label>
-<span>Pixel per Inch (aka DPI): </span>
-				</label>
-	    
-	                    <Input type = "radio"  id="ppInch" value="96" checked>
-                    Most browsers and programs
-                    
-                <Input type = "radio"  id="ppInch" value="72" >
-                    Adobe Illustrator
-                <br>
+
         <label>
             <span>Start:</span>
             <input type="text"  id="startNo"  value="0"  >
@@ -92,6 +83,16 @@
             <label>
                 <span></span>
             </label>
+			        			  <label>
+<span>Pixel per Inch: </span>
+				</label>
+	    
+	                    <Input type = "radio"  id="ppInch" value="96" checked>
+                    96 PPI - Most browsers and programs
+                    
+                <Input type = "radio"  id="ppInch" value="72" >
+                    72 PPI - Adobe Illustrator
+                <br>
                 <input type="checkbox" name="redundant" id="redundant" >Draw redundant lines<br>
     </form>
     <form id="svgexpform" method="post" action="http://download-data-uri.appspot.com/" >
