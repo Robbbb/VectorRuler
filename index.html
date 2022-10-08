@@ -23,7 +23,6 @@
         <span>Download a laser cuttable ruler to etch into your belongings and belts.</span>
     </h1>
     <form id="rulerParameters" action="" >
-
         <label>
             <span>Start:</span>
             <input type="text"  id="startNo"  value="0"  >
@@ -39,17 +38,22 @@
 
             <label>
                 <span>Units:</span>
-            </label>
+            
                 <Input type = "radio"  name="rulerUnits" value="inches" checked>
                     Inches
                     
                 <Input type = "radio"  name="rulerUnits" value="centimeters" >
                     Centimeters
+            </label>
                 <br>
+            <label>
+                <span>Sub Units:</span>
                 <Input type = "radio"  name= "subUnits" value = "2"   checked>
                     Fractional            
                 <Input type = "radio"  name= "subUnits" value = "10">
                     Decimal
+            </label>
+                <br>
             <label>
                 <span>Subdivisions: </span>
                 <select id="subUnitExponent"  style="width:30%" >
@@ -80,28 +84,26 @@
 
                 </select>
             </label>
+            <br>            
             <label>
-                <span></span>
-            </label>
-			        			  <label>
-<span>Pixel per Inch: </span>
-				</label>
-	    
-	                    <Input type = "radio" name= "ppInch" value="96" checked>
-                    96 PPI - Most browsers and programs
-                    
+                <span>Pixel per Inch: </span>
+                <Input type = "radio" name= "ppInch" value="96" checked>
+                    96 PPI - Most browsers and programs                            
                 <Input type = "radio"  name= "ppInch" value="72" >
                     72 PPI - Adobe Illustrator
-                <br>
-                <input type="checkbox" name="redundant" id="redundant" >Draw redundant lines<br>
+            </label>
+            <br>
+            <input type="checkbox" name="redundant" aria-label="Draw redundant lines" id="redundant" >Draw redundant lines<br>
     </form>
     <form id="svgexpform" method="post" action="http://download-data-uri.appspot.com/" >
-        <b>Filename: </b>
-        <input type="text" name="filename" value="exportedRuler.svg">
-        <input id="svgexpdata" name="data" value="123" type="hidden">
-        <a href="#" id="downloadSVG">
-            <input type="button" class="button" value="Download ruler as .SVG" id="svgexpbutton"> 
-        </a>
+        <label>
+            <span><b>Filename:</b></span>
+            <input type="text" name="filename" value="exportedRuler.svg">
+            <input id="svgexpdata" name="data" value="123" type="hidden">
+            <a href="#" id="downloadSVG">
+                <input type="button" class="button" value="Download ruler as .SVG" id="svgexpbutton"> 
+            </a>
+        </label>
     </form>
 
     <hr>
