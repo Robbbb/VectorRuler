@@ -28,6 +28,10 @@
             <input type="text"  id="startNo"  value="0"  >
         </label>
         <label>
+            <span>End:</span>
+            <input type="text" id="endNo" value="10">
+        </label>
+        <label>
             <span>Width:</span>
             <input type="text"  id="rulerWidth"  value="12"  >
         </label>
@@ -35,7 +39,6 @@
             <span>Height:</span>
             <input type="text"  id="rulerHeight" value="1.5">
         </label>
-
             <label>
                 <span>Units:</span>
             </label>
@@ -82,7 +85,10 @@
             <label>
                 <span></span>
             </label>
+            <span>
+                <input type="checkbox" name="absoluteValues" id="absoluteValues" >Absolute Values
                 <input type="checkbox" name="redundant" id="redundant" >Draw redundant lines<br>
+            </span>
     </form>
     <form id="svgexpform" method="post" action="http://download-data-uri.appspot.com/" >
         <b>Filename: </b>
