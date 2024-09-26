@@ -1,6 +1,11 @@
 /* jshint asi: true*/
 const ruler = {};
-
+//dpi resolution control for different laser cut machines/applications
+const dpi72 = 72;
+const dpi96 = 96;
+//Left and right canva added margings (px) to show all the vector rule
+const leftMargingDisplacement = 10;
+const rightMargingExtension = 20;
 
 const limitTickQty = function () {
     //Prevent it from crashing if it tries to render too many linest
@@ -31,20 +36,23 @@ const limitTickQty = function () {
 };
 
 const checkUnit = function () {
-    let pixelsPerInch = 72//I don't think this needs to be in the object....
-    let pixelsPerCM = pixelsPerInch / ruler.cmPerInch
+    let dpi = ruler.dpi //most used for laser cut programs
+    let pixelsPerCM =  dpi / 2.54
+    let pixelsPerInch =  dpi
 
     if (ruler.units === "inches") {
         ruler.pixelsPerUnit = pixelsPerInch
         ruler.unitsAbbr = "\"in."
+        document.getElementById('heightTitle').textContent = 'Height (in.):'
     } else if (ruler.units === "centimeters") {
         ruler.unitsAbbr = "cm."
         ruler.pixelsPerUnit = pixelsPerCM
+        document.getElementById('heightTitle').textContent = 'Height (cm.):'
     } else {
         ruler.pixelsPerUnit = 0
         console.error("Unexpected unit value. Unit value: " + rulerUnits)
     }
-    ruler.heightPixels = ruler.height * ruler.pixelsPerUnit
+    ruler.heightPixels = ruler.pixelsPerUnit * ruler.height
 };
 
 const checkSubUnitBase = function () {
@@ -99,34 +107,37 @@ const checkSubUnitBase = function () {
 };
 
 const resizeCanvas = function () {
-    // Add 1 pixel to draw the last major tick
-    document.getElementById("myCanvas").width = ruler.width * ruler.pixelsPerUnit + 1;
+    document.getElementById("paintCanvas").width = ruler.width * ruler.dpi + rightMargingExtension;
     let heightAdded = 50
-    document.getElementById("myCanvas").height = heightAdded + ruler.height * ruler.pixelsPerUnit;
+    document.getElementById("paintCanvas").height = heightAdded + ruler.heightPixels;
 };
 
 const tickLabel = function(x1, y2, finalTick, tickIndex, exponentIndex){
     //label the tick
-    let labelTextSize
-    let labelTextSizeInches = 18
-    let labelTextSizeCm = Math.round(labelTextSizeInches/ruler.cmPerInch)
-    if(ruler.units === "inches"){labelTextSize = labelTextSizeInches;}
-    else{labelTextSize = labelTextSizeCm;}
-    let xLabelOffset = 4
-    let yLabelOffset = 1
+    let labelTextSize = ruler.fontSize;
+    console.log('font size:' + labelTextSize)
 
-    if (finalTick) {xLabelOffset = -1* xLabelOffset}//last label is right justified
+    //TODO: Improve this behaviour adding different offset options: bottom centered, right, left, etc...
+    let xLabelOffset = -4    
+    let yLabelOffset = 10
+
+    if (finalTick) {xLabelOffset = -1 * xLabelOffset}//last label is right justified
 
     let text = new paper.PointText(new paper.Point(x1+ xLabelOffset, y2+yLabelOffset));
     text.justification = 'left';
-    if (finalTick) {text.justification = 'right';}//last label is right justified
+    if (finalTick) {
+        text.justification = 'right'; //TODO: Future functionality: Make this optional.
+    }//last label is right justified
+    
     text.fillColor = 'black';
-
-    if ($("input:checkbox[name=absoluteValues]:checked'").val()) {
+    
+    if(document.getElementById('absoluteValues').checked) 
+    {
         text.content = Math.abs(tickIndex);
     } else {
         text.content = tickIndex;
     }
+    
     text.style = {
     // fontFamily: 'Helvetica',
     fontFamily: 'monospace',
@@ -136,8 +147,9 @@ const tickLabel = function(x1, y2, finalTick, tickIndex, exponentIndex){
 };
 
 const tick = function(tickHeight, horizPosition, tickIndex, offsetTickIndex, exponentIndex, tickSpacing, finalTick){
+
     //exponentIndex is 0-6, how small it is, 6 being smallest
-    let x1 = horizPosition + (tickSpacing * tickIndex)
+    let x1 = leftMargingDisplacement + horizPosition + (tickSpacing * tickIndex)
     let x2 = x1 //x === x because lines are vertical
     let y1 = 0//all lines start at top of screen
     let y2 = tickHeight//downward
@@ -167,10 +179,11 @@ const constructRuler = function () {
         layerArray[exponentIndex] = new paper.Layer();
         layerArray[exponentIndex].name = ruler.subLabels[exponentIndex] + " Tick Group";
 
-        let startNo = $('#startNo').val();
-        let endNo = $('#endNo').val();
+        let startNo = document.getElementById('startNo').value;
+        let endNo = document.getElementById('endNo').value;
 
         highestTickDenominatorMultiplier = ruler.ticksPerUnit / Math.pow(ruler.subUnitBase, exponentIndex)
+
         //to prevent redundant ticks, this multiplier is applied to current units to ensure consistent indexing of ticks.
         let finalTick = false
         for (let tickIndex = 0; tickIndex <= tickQty; tickIndex++) {
@@ -202,19 +215,27 @@ const debug = function () {
 };
 
 const updateVariables = function () {
-    ruler.units = $("input:radio[name=rulerUnits]:checked'").val();
-    ruler.subUnitBase = $("input:radio[name=subUnits]:checked'").val();
-    ruler.redundant = $("input:checkbox[name=redundant]:checked'").val();
-    ruler.width = $('#rulerWidth').val();
-    ruler.height = $('#rulerHeight').val();
-    ruler.subUnitExponent = $('#subUnitExponent').val();
-    ruler.levelToLevelMultiplier = $('#levelToLevelMultiplier').val();
-    ruler.cmPerInch = 2.54
+    ruler.units = document.getElementById('rulerUnitsInches').checked ? 
+        document.getElementById('rulerUnitsInches').value : 
+        document.getElementById('rulerUnitsCentimeters').value;
+    ruler.subUnitBase = document.getElementById('subUnitsFractional').checked ? 
+        document.getElementById('subUnitsFractional').value :
+        document.getElementById('subUnitsDecimal').value;
+    ruler.redundant = document.getElementById('redundant').checked;
+    ruler.width = Math.abs(document.getElementById('startNo').value - document.getElementById('endNo').value); //Calculate the width based on the start and end numbers.
+    ruler.height = document.getElementById('rulerHeight').value;
+    ruler.subUnitExponent = document.getElementById('subUnitExponent').value;
+    ruler.levelToLevelMultiplier = document.getElementById('levelToLevelMultiplier').value;
+    ruler.absoluteValues = document.getElementById('absoluteValues').checked;
+    ruler.dpi = document.getElementById('dpi72').checked ? dpi72 : dpi96;
+    ruler.cmPerInch = 2.54;
+    ruler.fontSize = document.getElementById('fontSize').value;
 };
 
 const build = function () {
     // Get a reference to the canvas object
-    let canvas = document.getElementById('myCanvas');
+    let canvas = document.getElementById('paintCanvas');
+
     // Create an empty project and a view for the canvas:
     paper.setup(canvas);
 
@@ -233,8 +254,8 @@ const exportSvg = function () {
     //* I referenced the excellent SVG export example here: http://paperjs.org/features/#svg-import-and-export
     document.getElementById("svgexpbutton").onclick =
         function () {
-            exportWidth = document.getElementById("myCanvas").width
-            exportHeight = document.getElementById("myCanvas").height
+            exportWidth = document.getElementById("paintCanvas").width
+            exportHeight = document.getElementById("paintCanvas").height
 
             let downloadLink = document.getElementById('downloadSVG')
             // let svgString = paper.project.exportSVG({asString:true})
@@ -244,7 +265,7 @@ const exportSvg = function () {
                 type: 'image/svg+xml'
             }));
             downloadLink.href = url
-            downloadLink.download = 'myPaperExport.svg';
+            downloadLink.download = 'myRuler.svg';
 
 
             // viewBox ='viewBox="0 0 '+exportWidth+' '+exportHeight+'"'
