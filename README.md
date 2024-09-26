@@ -1,7 +1,7 @@
 VectorRuler
 ===========
 [
-![Screenshot Of applet](AppletScreenshot.png?raw=true "Screenshot Of applet")](http://robbbb.github.io/VectorRuler/)
+![Screenshot Of applet, redirects to the running applet](AppletScreenshot.png?raw=true "Screenshot Of applet")](http://robbbb.github.io/VectorRuler/)
 
 A Javascript-based generator of laser cutter friendly etchable rulers
 ### Features

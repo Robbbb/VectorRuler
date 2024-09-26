@@ -40,6 +40,7 @@ const checkUnit = function () {
     let pixelsPerCM =  dpi / 2.54
     let pixelsPerInch =  dpi
 
+
     if (ruler.units === "inches") {
         ruler.pixelsPerUnit = pixelsPerInch
         ruler.unitsAbbr = "\"in."
